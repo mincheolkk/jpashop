@@ -37,6 +37,7 @@ public class OrderItem {
         orderItem.setCount(count);
 
         item.removeStock(count);
+        return orderItem;
     }
 
     //==비지니스 로직==//
