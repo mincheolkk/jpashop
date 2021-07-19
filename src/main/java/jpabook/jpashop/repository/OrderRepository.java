@@ -25,5 +25,7 @@ public class OrderRepository {
         List<Order> resultList = em.createQuery("select o from Order o join o.member m", Order.class)
                 .setMaxResults(1000) //최대 1000
                 .getResultList();
+
+        return resultList;
     }
 }
