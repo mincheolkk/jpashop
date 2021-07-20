@@ -54,7 +54,7 @@ public class MemberController {
 
         // 멤버 Entity 를 그대로 뿌리기 보다는, DTO 로 변환해서 화면에 꼭 필요한 데이터들만 출력하는 것을 권장
         // 템플릿 엔진에서 랜더링해서 화면에 보낼때는, 서버에서 내가 원하는 부분만 내보내기에 Entity를 써도 괜찮음
-        // But, Api를 만들때는 절때 Entity 를 반환하면 안 됨. (왜냐면, Entity 를 변경하면 API 스펙이 변경되고 불안전해짐)
+        // But, Api를 만들때는 절때 Entity 를 반환하면 안 됨. (왜냐면, Entity 를 변경하면 API 스펙이 변경되고 불완전해짐)
 
         return "members/memberList";
     }
