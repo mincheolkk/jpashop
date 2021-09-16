@@ -103,4 +103,19 @@ public class OrderApiController {
         }
     }
 
+    // 앤티티를 DTO 로 변환 - 페치 조인 최적화
+    @GetMapping("/api/v3/orders")
+    public List<OrderDto> ordersV3() {
+        List<Order> orders = orderRepository.findAllWithItem();
+
+        for (Order order : orders) {
+            System.out.println("order ref= " + order + " id=" + order.getId());
+        }
+
+        List<OrderDto> result = orders.stream()
+                .map(o -> new OrderDto(o))
+                .collect(Collectors.toList());
+
+        return result;
+    }
 }

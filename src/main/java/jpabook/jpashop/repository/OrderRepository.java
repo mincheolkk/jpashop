@@ -81,6 +81,7 @@ public class OrderRepository {
                 .getResultList();
     }
 
+
 //    public List<OrderSimpleQueryDto> findOrderDtos() {
 //        return em.createQuery(
 //                "select new jpabook.jpashop.repository.OrderSimpleQueryDto(o.id, m.name, o.orderDate, o.status, d.address)" +
@@ -90,4 +91,20 @@ public class OrderRepository {
 //                .getResultList();
 //    }
     // 따로 QueryRepository 패키지로 분리
+
+    public List<Order> findAllWithItem() {
+        return em.createQuery(
+                "select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        " join fetch o.orderItems oi" +
+                        " join fetch oi.item i", Order.class)
+                .getResultList();
+        // distinct 가 있으면 Order를 가지고 올 때, 같은 id 값이면 중복을 제거해줌
+        // distinct 의 기능 2가지
+        // 1. DB 에 distinct 키워드 보냄.
+        // 2. 엔티티가 중복인 경우에 중복 제거 해줌.
+
+        // 일대다 관계를 페치 조인하면 페이징 쿼리는 불가능
+    }
 }
